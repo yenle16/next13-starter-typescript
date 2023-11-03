@@ -22,7 +22,10 @@ const BlogsPage = () => {
     }
 
     return (
+
         <div className="mt-3">
+            <title>Blog List</title>
+            {/* <meta name="description" content="This is my basic project Next." /> */}
             <AppTable
                 blogs={data?.sort((a: any, b: any) => b.id - a.id) ?? []}
             />

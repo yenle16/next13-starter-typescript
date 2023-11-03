@@ -25,6 +25,7 @@ const ViewDetailBlog = ({ params }: { params: { id: string } }) => {
 
     return (
         <div >
+           
             <div className='my-3'>
                 <Link href={"/blogs"}> Go Back</Link>
             </div>
