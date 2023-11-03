@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <AppHeader />
-        <Container>{children}</Container>
+        <Container className="min-vh-100">{children}</Container>
         <AppFooter/>
         <ToastContainer
           position="bottom-center"

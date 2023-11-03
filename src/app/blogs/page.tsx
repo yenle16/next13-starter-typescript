@@ -23,7 +23,7 @@ const BlogsPage = () => {
 
     return (
 
-        <div className="mt-3">
+        <div className="mt-3 ">
             <title>Blog List</title>
             {/* <meta name="description" content="This is my basic project Next." /> */}
             <AppTable

@@ -5,6 +5,8 @@ import { useState } from "react"
 import { Button, Table } from "react-bootstrap"
 import CreateModal from "./create.modal"
 import UpdateModal from "./update.modal"
+import { toast } from "react-toastify"
+import { mutate } from "swr"
 
 
 interface IProps {
@@ -16,8 +18,36 @@ const AppTable =(props: IProps)=>{
     const [showModalCreate,setShowModalCreate]=useState<boolean>(false)
     const [showModalUpdate,setShowModalUpdate]=useState<boolean>(false)
 
+    const handleDeleteBlog = (id: number) => {
+        if (confirm(`Do you want to delete this blog (id = ${id})`)) {
+            fetch(`http://localhost:8000/blogs/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json'
+                },
+
+            }).then(res => res.json())
+                .then(res => {
+                    if (res) {
+                        toast.success("Delete blog succeed !");
+                        mutate("http://localhost:8000/blogs")
+                    }
+                });
+        }
+
+    }
+
     return (
        <>
+       <div
+                className='mb-3'
+                style={{ display: "flex", justifyContent: "space-between" }}>
+                <h3>Table Blogs</h3>
+                <Button variant="secondary"
+                    onClick={() => setShowModalCreate(true)}
+                >Add New</Button>
+            </div>
         <Table bordered hover size="sm">
             <thead>
                 <tr>
@@ -45,7 +75,7 @@ const AppTable =(props: IProps)=>{
                                             setShowModalUpdate(true);
                                         }}
                                 >Edit</Button>
-                                <Button>Delete</Button>
+                                <Button variant='danger' onClick={()=>handleDeleteBlog(blog.id)}>Delete</Button>
 
                             </td>
                         </tr>

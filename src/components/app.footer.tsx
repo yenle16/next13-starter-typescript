@@ -6,7 +6,7 @@ const AppFooter = () => {
             textAlign: "center",
             padding: "5px 0"
         }}>
-            Đây là footer
+            This is footer
         </div>
     )
 }
